@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Online</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    
+    <style>
+        /*untuk teks heading di tag <body>*/
+        h2
+        {
+            background-color: white;
+            color: crimson;
+            font-family: sans-serif;
+            text-align: center;
+            width: 45%;
+            margin:auto;
+            padding: 20px;
+        }
+ 
+        body
+        {
+            background-image: url('perpustakaan.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Perpustakaan Online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">DAFTAR ANGGOTA</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="book.html">BUKU</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <div>
+        <h1 class="mb-4 text-Primary">Daftar Buku</h1>
+        <p class="text-center">SELAMAT DATANG DI PERPUSTAKAAN ONLINE</p>
+        <div class="row">
+            <!-- Contoh buku 1 -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="gambar2.jpeg" class="card-img-top" alt="Buku 1">
+                    <div class="card-body">
+                        <h5 class="card-title">BOOTSTRAP CSS FRAMEWORK</h5>
+                        <p class="card-text">Boostrap merupakan freamwork CSS yang paling banyak diminati oleh para developer website.</p>
+                        <a href="book.html" class="btn btn-danger">More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh buku 2 -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="gambar3.jpeg" class="card-img-top" alt="Buku 1">
+                    <div class="card-body">
+                        <h5 class="card-title">ATOMIC HABITS</h5> 
+                        <p class="card-text">Cara Mudah dan Terbukti untuk Membuat Kebiasaan Baik dan Menghilangkan Kebiasaan Buruk.</p>
+                        <a href="book.html" class="btn btn-danger">More</a>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Contoh buku 3 -->
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="gambar2.jpeg" class="card-img-top" alt="Buku 1">
+                            <div class="card-body">
+                                <h5 class="card-title">BOOTSTRAP CSS FRAMEWORK</h5>
+                                <p class="card-text">Boostrap merupakan freamwork CSS yang paling banyak diminati oleh para developer website.</p>
+                                <a href="book.html" class="btn btn-danger">More</a>
+                            </div>
+                        </div>
+                    </div>
+        
+            <!-- Contoh buku 4 -->
+                    <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <img src="gambar4.jpeg" class="card-img-top" alt="Buku 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">PSYCHOLOGY OF MONEY</h5>
+                                        <p class="card-text">Pelajaran Abadi Mengenai Kekayaan Ketamakaan, dan Kebahagiaan</p>
+                                        <a href="book.html" class="btn btn-danger">More</a>
+                                    </div>
+                                </div>
+                            </div>
+                
+            
+            <!-- Contoh buku 5 -->
+                                    <div class="col-md-4">
+                                        <div class="card mb-4">
+                                            <img src="gambar5.jpeg" class="card-img-top" alt="Buku 1">
+                                            <div class="card-body">
+                                                <h5 class="card-title">C++</h5>
+                                                <p class="card-text">Buku yang Sangat Tepat Untuk Pembaca Yang Sedang atau akan Mempelajari Dasar Pemrogaman Komputer.</p>
+                                                <a href="book.html" class="btn btn-danger">More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+            <!-- Contoh buku 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="gambar6.jpg" class="card-img-top" alt="Buku 2">
+                    <div class="card-body">
+                        <h5 class="card-title">PYTHON</h5>
+                        <p class="card-text">Python untuk Menjelaskan fitur,alat, dan Tekhnik yang Digunakan dalam Pengembangan Python.</p>
+                        <a href="book.html" class="btn btn-danger">More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-Secondary text-center text-lg-start">
+        <div class="container p-4">
+            <p class="text-center">&copy; 2024 Perpustakaan Online. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Anggota</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <style>
+        /*untuk teks heading di tag <body>*/
+        h2
+        {
+            background-color: white;
+            color: crimson;
+            font-family: sans-serif;
+            text-align: center;
+            width: 45%;
+            margin:auto;
+            padding: 20px;
+        }
+ 
+        body
+        {
+            background-image: url('perpustakaan.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Perpustakaan Online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Daftar Anggota</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="produk.html">PRODUK</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <h1 class="mb-4">Daftar Anggota</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Nama</label>
+                <input type="text" class="form-control" id="name" placeholder="Nama Lengkap Anda">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email Lengkap Anda">
+            </div>
+            <div class="form-group">
+                <label for="password">Kata Sandi</label>
+                <input type="password" class="form-control" id="password" placeholder="Kata Sandi Lengkap Anda">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Buku</label>
+                <input type="password" class="form-control" id="password" placeholder="Masukkan Buku Yang Anda Minati">
+            </div>
+            
+            <button type="submit" class="btn btn-warning">Daftar</button>
+            <button type="cancel" class="btn btn-warning">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-Secondary text-center text-lg-start">
+        <div class="container p-4">
+            <p class="text-center">&copy; 2024 Perpustakaan Online. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
