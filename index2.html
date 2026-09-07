@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Special for My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        padding: 20px 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        padding: 25px 20px;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(238, 156, 167, 0.4);
+        border: 2px solid #fff;
+        position: relative;
+      }
+
+      /* TAHAP 1: PIN CODE */
+      .title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #d81b60;
+        margin-bottom: 5px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 20px;
+      }
+
+      .pin-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #ff4081;
+        transition: all 0.2s ease;
+        background-color: transparent;
+      }
+
+      .dot.filled {
+        background-color: #ff4081;
+        transform: scale(1.15);
+        box-shadow: 0 0 8px rgba(255, 64, 129, 0.5);
+      }
+
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .btn-key {
+        background: #fff;
+        border: 1px solid #ffe4e8;
+        color: #d81b60;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.1s,
+          background-color 0.2s;
+        user-select: none;
+      }
+
+      .btn-key:active {
+        transform: scale(0.9);
+        background-color: #ffe4e8;
+      }
+
+      .btn-key.submit {
+        background-color: #ff4081;
+        color: #fff;
+      }
+
+      /* TAHAP 2: QUESTION & RUNNING BUTTON */
+      .cat-box {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 15px auto;
+        background-color: #ff80ab;
+        clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 45px;
+        box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+      }
+
+      .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+        position: relative;
+        min-height: 50px;
+      }
+
+      .btn-action {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 15px;
+        transition: all 0.2s;
+      }
+
+      .btn-yes {
+        background-color: #ff4081;
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 64, 129, 0.4);
+      }
+
+      .btn-no {
+        background-color: #eee;
+        color: #666;
+        position: absolute;
+      }
+
+      /* TAHAP 3: MATRIX CANVAS */
+      #canvas-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0d0208;
+        display: none;
+        z-index: 999;
+      }
+
+      canvas {
+        display: block;
+      }
+
+      /* TAHAP 4: GALLERY & LETTER */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: 85px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .letter-card {
+        background: #fff;
+        padding: 18px;
+        border-radius: 16px;
+        text-align: left;
+        border: 1px solid #ffd1dc;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      }
+
+      .letter-title {
+        font-size: 17px;
+        color: #d81b60;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .letter-body {
+        font-size: 12.5px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .letter-footer {
+        text-align: right;
+        font-family: "Sacramento", cursive;
+        font-size: 22px;
+        color: #ff4081;
+        font-weight: bold;
+      }
+
+      /* Floating Music Button */
+      .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4081;
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+        cursor: pointer;
+        z-index: 1000;
+        transition: transform 0.2s;
+      }
+
+      .music-btn.playing {
+        animation: spin 3s linear infinite;
+      }
+
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .pulse {
+        animation: pulse 1.5s infinite;
+      }
+    </style>
+  </head>
+  <body onclick="playMusicOnFirstClick()">
+    <!-- PEMUTAR MUSIK OFFLINE -->
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic(event)" title="Putar/Jeda Musik">🎵</div>
+    <audio id="bgMusic" loop preload="auto">
+      <source src="lagu.mpeg" type="audio/mpeg" />
+      <source src="lagu.mpg" type="video/mpeg" />
+      <source src="lagu" type="audio/mpeg" />
+    </audio>
+
+    <div class="container">
+      <!-- TAHAP 1 -->
+      <div id="step-1" class="card">
+        <div class="title">Untuk Pacarku Sayang ❤️</div>
+        <div class="subtitle">Masukkan tanggal jadian kita (DDMMYY) 🌸</div>
+
+        <div class="pin-dots">
+          <div class="dot" id="dot-0"></div>
+          <div class="dot" id="dot-1"></div>
+          <div class="dot" id="dot-2"></div>
+          <div class="dot" id="dot-3"></div>
+          <div class="dot" id="dot-4"></div>
+          <div class="dot" id="dot-5"></div>
+        </div>
+
+        <div class="keypad">
+          <button type="button" class="btn-key" onclick="pressKey('1')">1</button>
+          <button type="button" class="btn-key" onclick="pressKey('2')">2</button>
+          <button type="button" class="btn-key" onclick="pressKey('3')">3</button>
+          <button type="button" class="btn-key" onclick="pressKey('4')">4</button>
+          <button type="button" class="btn-key" onclick="pressKey('5')">5</button>
+          <button type="button" class="btn-key" onclick="pressKey('6')">6</button>
+          <button type="button" class="btn-key" onclick="pressKey('7')">7</button>
+          <button type="button" class="btn-key" onclick="pressKey('8')">8</button>
+          <button type="button" class="btn-key" onclick="pressKey('9')">9</button>
+          <button type="button" class="btn-key" onclick="pressKey('clear')">✕</button>
+          <button type="button" class="btn-key" onclick="pressKey('0')">0</button>
+          <button type="button" class="btn-key submit" onclick="checkPin()">✓</button>
+        </div>
+      </div>
+
+      <!-- TAHAP 2 -->
+      <div id="step-2" class="card hidden">
+        <div class="cat-box pulse">🐱❤️</div>
+        <div class="title" style="margin-bottom: 10px">Kamu sayang aku ga? 🥺</div>
+
+        <div class="btn-group" id="btn-group">
+          <button class="btn-action btn-yes" onclick="goToStep3()">YES 💕</button>
+          <button class="btn-action btn-no" id="btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">NO 😜</button>
+        </div>
+      </div>
+
+      <!-- TAHAP 4 -->
+      <div id="step-4" class="card hidden">
+        <div class="gallery-grid">
+          <img src="1.jpeg" alt="Foto 1" />
+          <img src="2.jpeg" alt="Foto 2" />
+          <img src="3.jpeg" alt="Foto 3" />
+          <img src="4.jpeg" alt="Foto 4" />
+          <img src="5.jpeg" alt="Foto 5" />
+          <img src="6.jpeg" alt="Foto 6" />
+        </div>
+
+        <div class="letter-card">
+          <div class="letter-title">Pesan Spesial Untukmu ❤️</div>
+          <div class="letter-body">
+            Makasih ya sayang udah selalu ada dan mewarnai hari-hariku. Jangan pernah lupa kesehatan kamu itu yang paling penting, rokok nya di kurangin ya, jangan suka marah-marah aja nanti darah tinggi hehe, jangan bandel-bandel udah tua
+            juga kan malu sama umur atuh, Jangan suka begadang, makan yang teratur, dan obat nya jangan lupa di minum ya ! Semoga kita bisa bareng-bareng terus dalam waktu yang lama. Tetap jadi pribadi yang baik, makin sukses, dan selalu
+            bahagia ya sayang. Aku sayang sama kamu! ❤️✨
+          </div>
+          <div class="letter-footer">- Nur Azizah</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAHAP 3: MATRIX CANVAS -->
+    <div id="canvas-container">
+      <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <script>
+      const CORRECT_PIN = "180526"; // Silahkan ubah angka PIN kamu di sini
+      let currentPin = "";
+      let musicStarted = false;
+
+      const music = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("musicBtn");
+
+      function playMusicOnFirstClick() {
+        if (!musicStarted) {
+          startMusic();
+        }
+      }
+
+      function startMusic() {
+        music
+          .play()
+          .then(() => {
+            musicStarted = true;
+            musicBtn.classList.add("playing");
+          })
+          .catch((err) => {
+            console.log("Autoplay diblokir browser sebelum ada interaksi:", err);
+          });
+      }
+
+      function toggleMusic(e) {
+        if (e) e.stopPropagation();
+        if (music.paused) {
+          music.play();
+          musicBtn.classList.add("playing");
+          musicStarted = true;
+        } else {
+          music.pause();
+          musicBtn.classList.remove("playing");
+        }
+      }
+
+      function pressKey(val) {
+        startMusic();
+        if (val === "clear") {
+          currentPin = "";
+        } else if (currentPin.length < 6) {
+          currentPin += val;
+        }
+        updateDots();
+      }
+
+      function updateDots() {
+        for (let i = 0; i < 6; i++) {
+          const dot = document.getElementById("dot-" + i);
+          if (dot) {
+            if (i < currentPin.length) {
+              dot.classList.add("filled");
+            } else {
+              dot.classList.remove("filled");
+            }
+          }
+        }
+      }
+
+      function checkPin() {
+        startMusic();
+        if (currentPin.length < 6) {
+          alert("Masukkan 6 digit angka dulu ya sayang!");
+          return;
+        }
+        if (currentPin === CORRECT_PIN) {
+          document.getElementById("step-1").classList.add("hidden");
+          document.getElementById("step-2").classList.remove("hidden");
+          resetNoButtonPosition();
+        } else {
+          alert("PIN salah sayang! Coba ingat-ingat lagi 😉");
+          currentPin = "";
+          updateDots();
+        }
+      }
+
+      const btnNo = document.getElementById("btn-no");
+      const btnGroup = document.getElementById("btn-group");
+
+      function resetNoButtonPosition() {
+        btnNo.style.left = "160px";
+        btnNo.style.top = "0px";
+      }
+
+      function moveNoButton() {
+        const containerRect = btnGroup.getBoundingClientRect();
+        const maxX = containerRect.width - btnNo.offsetWidth;
+        const maxY = 150;
+
+        const randomX = Math.random() * (maxX - 20);
+        const randomY = Math.random() * maxY - 50;
+
+        btnNo.style.left = Math.max(0, randomX) + "px";
+        btnNo.style.top = randomY + "px";
+      }
+
+      function goToStep3() {
+        document.getElementById("step-2").classList.add("hidden");
+        const canvasContainer = document.getElementById("canvas-container");
+        canvasContainer.style.display = "block";
+
+        startHeartAnimation();
+
+        setTimeout(() => {
+          canvasContainer.style.display = "none";
+          document.getElementById("step-4").classList.remove("hidden");
+        }, 5500);
+      }
+
+      /* ANIMASI HEART MATRIX */
+      function startHeartAnimation() {
+        const canvas = document.getElementById("matrixCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = "01";
+        const fontSize = 16;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        const heartPoints = [];
+        const scale = Math.min(canvas.width, canvas.height) / 35;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2 - 20;
+
+        for (let t = 0; t < Math.PI * 2; t += 0.05) {
+          const x = 16 * Math.pow(Math.sin(t), 3);
+          const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+          heartPoints.push({
+            x: centerX + x * scale,
+            y: centerY + y * scale,
+          });
+        }
+
+        function draw() {
+          ctx.fillStyle = "rgba(13, 2, 8, 0.15)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#ff69b4";
+          ctx.font = fontSize + "px monospace";
+
+          for (let i = 0; i < drops.length; i++) {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+              drops[i] = 0;
+            }
+            drops[i]++;
+          }
+
+          ctx.fillStyle = "#ff1493";
+          heartPoints.forEach((p) => {
+            ctx.fillText("🌸", p.x, p.y);
+          });
+
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 22px Poppins";
+          ctx.textAlign = "center";
+          ctx.shadowColor = "#ff4081";
+          ctx.shadowBlur = 10;
+          ctx.fillText("I ❤️ You Sayang", centerX, centerY - 5);
+
+          ctx.font = "italic 16px Poppins";
+          ctx.fillStyle = "#ff80ab";
+          ctx.fillText("mmuuuaaacchhh 😘", centerX, centerY + 22);
+
+          ctx.shadowBlur = 0;
+        }
+
+        const interval = setInterval(draw, 33);
+        setTimeout(() => clearInterval(interval), 5500);
+      }
+    </script>
+  </body>
+</html>
